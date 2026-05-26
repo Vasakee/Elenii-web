@@ -69,8 +69,8 @@ export default function OnboardingPage() {
       </div>
 
       {/* Login button */}
-      <div className="w-full z-10" onClick={e => e.stopPropagation()}>
-        {(state === 'idle' || state === 'error') && !isProcessing && (
+      <div className="w-full z-10">
+        {!userProfile && (state === 'idle' || state === 'error') && !isProcessing && (
           <button
             onClick={handleGoogleLogin}
             className="w-full bg-white p-4 rounded-2xl mb-4 flex justify-center items-center gap-3"
@@ -82,21 +82,23 @@ export default function OnboardingPage() {
       </div>
 
       {/* Center */}
-      <div className="flex-1 flex flex-col items-center justify-center">
-        <h1 className="text-white text-[32px] font-bold tracking-tight text-center">{getStatusText()}</h1>
-        <div className="flex gap-2 mt-6">
+      <div className="flex-1 flex flex-col items-center justify-center py-8">
+        <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-center px-4">
+          {getStatusText()}
+        </h1>
+        <div className="flex gap-2 mt-8">
           {dots.map((active, i) => (
-            <div key={i} className={`h-1.5 w-8 rounded-full ${active ? 'bg-[#0E5EAE]' : 'bg-zinc-800'}`} />
+            <div key={i} className={`h-1.5 w-8 sm:w-10 rounded-full ${active ? 'bg-[#0E5EAE]' : 'bg-zinc-800'}`} />
           ))}
         </div>
         {isProcessing && (
-          <div className="mt-8 flex items-center gap-3 bg-[#0E5EAE]/10 px-6 py-3 rounded-full border border-[#0E5EAE]/20">
+          <div className="mt-10 flex items-center gap-3 bg-[#0E5EAE]/10 px-6 py-3 rounded-full border border-[#0E5EAE]/20">
             <div className="w-4 h-4 border-2 border-[#0E5EAE] border-t-transparent rounded-full animate-spin" />
-            <span className="text-[#0E5EAE] font-bold">Processing voice profile...</span>
+            <span className="text-[#0E5EAE] font-bold text-sm sm:text-base">Processing voice profile...</span>
           </div>
         )}
         {state === 'error' && !isProcessing && (
-          <p className="text-zinc-400 text-sm mt-6 text-center max-w-[240px]">
+          <p className="text-zinc-400 text-sm sm:text-base mt-8 text-center max-w-[280px]">
             {errorMessage || 'Tap the microphone to try again.'}
           </p>
         )}

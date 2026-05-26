@@ -21,27 +21,27 @@ export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-black">
       {/* Central dashboard */}
-      <div className="flex-1 relative">
-        <div className="absolute inset-0 bg-[#050505] flex flex-col items-center justify-center">
-          <div className="w-32 h-32 rounded-full border border-zinc-800 flex items-center justify-center mb-6">
-            <Brain size={64} color="#0E5EAE" strokeWidth={1} />
+      <div className="flex-1 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#050505] flex flex-col items-center justify-center p-4">
+          <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full border border-zinc-800 flex items-center justify-center mb-6">
+            <Brain className="w-12 h-12 sm:w-16 sm:h-16" color="#0E5EAE" strokeWidth={1} />
           </div>
-          <h1 className="text-white text-2xl font-black tracking-tight">AI ANALYSES READY</h1>
-          <p className="text-zinc-500 text-sm font-medium mt-2">Connected to Elenii Cloud</p>
+          <h1 className="text-white text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-center">AI ANALYSES READY</h1>
+          <p className="text-zinc-500 text-xs sm:text-sm font-medium mt-2">Connected to Elenii Cloud</p>
         </div>
 
         {/* Overlays */}
-        <div className="absolute inset-0 flex flex-col">
+        <div className="absolute inset-0 flex flex-col pointer-events-none">
           {/* Header */}
-          <div className="flex justify-between items-center px-6 py-4 pt-safe">
+          <div className="flex justify-between items-center px-6 py-4 pt-safe pointer-events-auto">
             <div className="flex items-center gap-2">
               <RotateCcw size={20} color="white" />
-              <div>
+              <div className="hidden xs:block">
                 <p className="text-white text-[11px] font-bold tracking-widest uppercase leading-none">Elenii</p>
                 <p className="text-white text-[11px] font-bold tracking-widest uppercase leading-none">Shepherd</p>
               </div>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 sm:gap-6">
               <button onClick={resetOnboarding}>
                 <Trash2 size={20} color="#EF4444" strokeWidth={1.5} />
               </button>
@@ -51,19 +51,21 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="flex-1 px-6 flex flex-col">
-            <CameraStatusChip online={true} label="Phone Camera" />
+          <div className="flex-1 px-6 flex flex-col pointer-events-none">
+            <div className="pointer-events-auto mt-2">
+              <CameraStatusChip online={true} label="Phone Camera" />
+            </div>
             <div className="flex-1" />
-            <div className="flex items-end justify-between mb-8">
+            <div className="flex items-end justify-between mb-8 pointer-events-auto">
               <div className="pb-4">
-                <p className="text-white text-lg font-bold tracking-wide">Say "Scan ahead"</p>
-                <p className="text-zinc-500 text-sm mt-1">Ready for real-time guidance</p>
+                <p className="text-white text-base sm:text-lg font-bold tracking-wide">Say "Scan ahead"</p>
+                <p className="text-zinc-500 text-xs sm:text-sm mt-1">Ready for real-time guidance</p>
               </div>
               <button
                 onClick={() => router.push('/navigation')}
-                className="w-20 h-20 rounded-full border-4 border-white flex items-center justify-center bg-black"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-4 border-white flex items-center justify-center bg-black transition-transform active:scale-95"
               >
-                <Search size={36} color="white" strokeWidth={3} />
+                <Search className="w-8 h-8 sm:w-10 sm:h-10" color="white" strokeWidth={3} />
               </button>
             </div>
           </div>

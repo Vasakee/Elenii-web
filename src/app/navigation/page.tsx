@@ -79,32 +79,36 @@ export default function NavigationPage() {
       </div>
 
       <div className="flex-1 mt-4">
-        <h1 className="text-white text-[32px] font-bold mb-8">Navigation</h1>
+        <h1 className="text-white text-3xl sm:text-4xl font-bold mb-8">Navigation</h1>
 
         {cameraError && (
           <p className="text-zinc-400 text-sm mb-4">Camera unavailable — vision scanning disabled.</p>
         )}
 
-        <div className={`flex items-center bg-black rounded-2xl px-6 py-6 border-2 ${address.length > 0 || isListening ? 'border-white' : 'border-zinc-800'}`}>
+        <div className={`flex items-center bg-black rounded-2xl px-6 py-4 sm:py-6 border-2 ${address.length > 0 || isListening ? 'border-white' : 'border-zinc-800'}`}>
           <input
             value={address}
             onChange={e => setAddress(e.target.value)}
             placeholder="Say destination..."
-            className="flex-1 bg-transparent text-white text-xl font-bold outline-none placeholder-[#444]"
+            className="flex-1 bg-transparent text-white text-lg sm:text-xl font-bold outline-none placeholder-[#444]"
           />
           {address.length > 0 && (
             <button onClick={() => setAddress('')}><X size={24} color="white" /></button>
           )}
         </div>
 
-        <div className="flex flex-col items-center justify-center flex-1 mt-16">
+        <div className="flex flex-col items-center justify-center flex-1 mt-8 sm:mt-16">
           <button
             onClick={isListening ? stopListening : startListening}
-            className={`w-40 h-40 rounded-full border-4 flex items-center justify-center ${isListening ? 'bg-red-600 border-white' : 'bg-black border-white'}`}
+            className={`w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 flex items-center justify-center ${isListening ? 'bg-red-600 border-white' : 'bg-black border-white'}`}
           >
-            {isListening ? <Square size={50} color="white" fill="white" /> : <Mic size={60} color="white" strokeWidth={3} />}
+            {isListening ? (
+              <Square className="w-10 h-10 sm:w-12 sm:h-12" color="white" fill="white" />
+            ) : (
+              <Mic className="w-12 h-12 sm:w-16 sm:h-16" color="white" strokeWidth={3} />
+            )}
           </button>
-          <p className="text-white text-sm font-black mt-10 uppercase tracking-[0.3em]">
+          <p className="text-white text-xs sm:text-sm font-black mt-8 sm:mt-10 uppercase tracking-[0.3em]">
             {isListening ? 'Listening...' : 'Tap for Voice Input'}
           </p>
         </div>
