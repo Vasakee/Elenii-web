@@ -27,7 +27,7 @@ export default function OnboardingPage() {
   }, [speak, setIsOnboarding]);
 
   const handleGoogleLogin = () => {
-    if (isLoggingIn) return;
+    if (isLoggingIn || userProfile) return;
     setIsLoggingIn(true);
     const redirectUrl = encodeURIComponent(window.location.origin + '/onboarding');
     window.location.href = `${API_URL}/auth/google?state=${redirectUrl}`;
@@ -52,7 +52,7 @@ export default function OnboardingPage() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#121212] px-6" onClick={handleGoogleLogin}>
+    <div className="flex flex-col min-h-screen bg-[#121212] px-6">
       {/* Header */}
       <div className="flex justify-between items-center py-4 mt-2">
         <div className="flex items-center gap-3">
