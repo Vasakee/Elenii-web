@@ -92,8 +92,10 @@ export function IdentityProvider({ children }: { children: ReactNode }) {
         setUserProfile(userData);
         setUserName(userData.displayName?.split(' ')[0] || null);
         setUserId(userData.id);
-        setOnboardingComplete(false);
         localStorage.setItem('user_profile', JSON.stringify(userData));
+        // Auto-complete onboarding — no need to collect name via voice
+        localStorage.setItem('has_onboarded', 'true');
+        setOnboardingComplete(true);
         // Clean URL
         window.history.replaceState({}, '', window.location.pathname);
         setIsHydrated(true);
