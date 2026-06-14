@@ -44,9 +44,11 @@ export default function NavigationPage() {
               method: 'POST',
               body: JSON.stringify({ imageBase64: base64 }),
             });
-            const desc = res.data?.description || res.data?.text;
+            const desc = res.data?.speech || res.data?.description || res.data?.text;
             if (desc) speak(desc);
-          } catch {}
+          } catch (err: any) {
+            console.error('Vision API error:', err?.message);
+          }
         }, 3000);
       })
       .catch(() => setCameraError(true));
